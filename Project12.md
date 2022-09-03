@@ -1,6 +1,6 @@
 ## ANSIBLE REFACTORING AND STATIC ASSIGNMENTS (IMPORTS AND ROLES)
 
-We shall continue working with the ` ansible-config-mgt ` repository for thsi project
+We shall continue working with the ` ansible-config-mgt ` repository for this project
 
 Now you need to refactor your Ansible code, create assignments, and learn how to use the imports functionality. Imports allow to effectively re-use previously created playbooks in a new playbook – it allows you to organize your tasks and reuse them when needed.
 
@@ -12,7 +12,7 @@ In this project, we will move things around a little bit in the code, but the ov
 
 ### Step 1 – Jenkins job enhancement
 
-Before we begin, let us make some changes to our Jenkins job – now every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, it consumes space on Jenkins serves with each subsequent change. Let us enhance it by introducing a new Jenkins project/job – we will require `Copy Artifact` plugin.
+Before we begin, let us make some changes to our Jenkins job – now every new change in the codes creates a separate directory which is not very convenient when we want to run some commands from one place. Besides, it consumes space on Jenkins servers with each subsequent change. Let us enhance it by introducing a new Jenkins project/job – we will require `Copy Artifact` plugin.
 
 1. Go to your `Jenkins-Ansible` server and create a new directory called `ansible-config-artifact` – we will store there all artifacts after each build using below code:
 
@@ -102,7 +102,7 @@ update `site.yml` with - `import_playbook: ../static-assignments/common-del.yml`
 
 Check that all the codes have been moved to Jenkins and the artifacts have been saved into the `ansible-config-artifacts` folder of the `Jenkins-Ansible` server
 
-NOTE: Before running `import_playbooks` command, you want to ping your hosts from the `ansible-config-artifacts` folder of the `Jenkins-Ansible` server
+NOTE: Before running `ansible-playbook` command, you want to ping your hosts from the `ansible-config-artifacts` folder of the `Jenkins-Ansible` server
 
 Note that before you are able to ping servers sucessfully, you need to point the ansible config file to the inventory folder which houses the dev file that has all the hosts. 
 
@@ -154,7 +154,7 @@ Now you have learned how to use `import_playbooks` module and you have a ready s
 
 ## Step 3 – Configure UAT Webservers with a role ‘Webserver’
 
-We have our nice and clean `dev` environment, so let us put it aside and configure 2 new Web Servers as `uat`. We could write tasks to configure Web Servers in the same playbook, but it would be too messy, instead, we will use a dedicated role to make our configuration reusable. (Rolese helps to break out playbooks into chunks that are reusable)
+We have our nice and clean `dev` environment, so let us put it aside and configure 2 new Web Servers as `uat`. We could write tasks to configure Web Servers in the same playbook, but it would be too messy, instead, we will use a dedicated role to make our configuration reusable. (Roles helps to break out playbooks into chunks that are reusable)
 
 1. Launch 2 fresh EC2 instances using RHEL 8 image, we will use them as our uat servers, so give them names accordingly – `Web1-UAT` and `Web2-UAT`.
 
